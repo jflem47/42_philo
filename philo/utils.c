@@ -1,35 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 15:12:32 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/05/04 15:29:10 by jlemieux         ###   ########.fr       */
+/*   Created: 2023/05/04 15:28:05 by jlemieux          #+#    #+#             */
+/*   Updated: 2023/05/04 15:43:57 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-# include <pthread.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-typedef struct s_env
+int	ft_isnum(char *s)
 {
-	int		nb_philos;
-	double	tte;
-	double	ttd;
-	double	tts;
-	double	times_must_eat;
-}			t_env;
+	int	i;
 
-//PARSING
-void		parse_args(char **av, t_env *env);
+	i = 0;
+	if (s[i] == '-')
+		i++;
+	while (s[i] != '\0')
+	{
+		if (s[i] <= '0' && s[i] >= '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-//UTILS
-double		ft_atod(char *num);
+double	atod(char *num)
+{
+	double	res;
+	int		i;
+	int		sign;
 
-#endif
+	i = 0;
+	sign = 1;
+	res = 0;
+	if (num[i] == '-')
+	{
+		sign *= -1;
+		i++;
+	}
+	while (num[i] != '\0')
+	{
+		res += num[i] - '0';
+		if (num[i + 1] != '\0')
+			res *= 10;
+	}
+}
