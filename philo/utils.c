@@ -17,8 +17,6 @@ int	ft_isnum(char *s)
 	int	i;
 
 	i = 0;
-	if (s[i] == '-')
-		i++;
 	while (s[i] != '\0')
 	{
 		if (s[i] <= '0' && s[i] >= '9')
@@ -28,24 +26,40 @@ int	ft_isnum(char *s)
 	return (1);
 }
 
-double	atod(char *num)
+double	ft_atod(char *num)
 {
 	double	res;
 	int		i;
-	int		sign;
 
 	i = 0;
-	sign = 1;
 	res = 0;
-	if (num[i] == '-')
-	{
-		sign *= -1;
-		i++;
-	}
 	while (num[i] != '\0')
 	{
 		res += num[i] - '0';
 		if (num[i + 1] != '\0')
 			res *= 10;
+		i++;
 	}
+	return (res);
+}
+
+void	parse_args(char **av, int ac, t_env *env)
+{
+	int i;
+
+	i = 1;
+	while (i < ac)
+	{
+		if (!ft_isnum(av[i++]))
+		{
+			printf("philo: invalid arguments\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	env->nb_philos = ft_atod(av[1]);
+	env->ttd = ft_atod(av[2]);
+	env->tte = ft_atod(av[3]);
+	env->tts = ft_atod(av[4]);
+	if (ac == 6)
+		env->times_must_eat = ft_atod(av[5]);
 }

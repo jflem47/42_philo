@@ -12,6 +12,7 @@
 
 #include "philo.h"
 
-void	parse_args(char **av, t_env *env)
+void philo(t_env *env)
 {
+	
 }

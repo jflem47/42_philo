@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+//STRUCTS
 typedef struct s_env
 {
 	int		nb_philos;
@@ -24,12 +25,39 @@ typedef struct s_env
 	double	ttd;
 	double	tts;
 	double	times_must_eat;
+	t_table	**table;
 }			t_env;
 
+typedef struct s_philo
+{
+	int		num;
+	int		eating;
+	int		sleeping;
+	int		fork;
+}			t_philo;
+
+typedef struct s_table
+{
+	t_philo	*philo;
+	t_table	*next;
+	t_table	*prev;
+}			t_table;
+
 //PARSING
-void		parse_args(char **av, t_env *env);
+void		parse_args(char **av, int ac, t_env *env);
 
 //UTILS
 double		ft_atod(char *num);
+int			ft_isnum(char *s);
+
+//TABLE
+void		init_table(t_env *env);
+t_table		*add_seat(t_table **table, t_philo *philo);
+t_philo		*get_philo(t_table **table, int index);
+int			table_size(t_table **table);
+void		create_table(t_env *env);
+
+//MAIN
+void		philo(t_env *env);
 
 #endif

@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac < 5)
 		return (printf("philo: not enough arguments.\n"), EXIT_FAILURE);
-	parse_args(av, &env);
+	parse_args(av, ac, &env);
+	
 	return (EXIT_SUCCESS);
 }
