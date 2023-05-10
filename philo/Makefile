@@ -3,7 +3,6 @@ SRC			=	main.c \
 				philo.c \
 				threads.c \
 				utils.c \
-				table.c \
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror

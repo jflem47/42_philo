@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:08:36 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/05/04 15:25:52 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:28:10 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ int	main(int ac, char **av)
 	if (ac < 5)
 		return (printf("philo: not enough arguments.\n"), EXIT_FAILURE);
 	parse_args(av, ac, &env);
-	
 	return (EXIT_SUCCESS);
 }

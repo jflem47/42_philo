@@ -6,13 +6,13 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:08:33 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/05/04 15:26:50 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:24:09 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void philo(t_env *env)
+void	philo(t_env *env)
 {
-	
+	(void)env;
 }
