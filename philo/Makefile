@@ -1,33 +1,32 @@
-NAME		=	philo
-SRC			=	main.c \
-				philo.c \
-				threads.c \
-				utils.c \
+NAME = philo
 
-CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
-OBJS		=	$(SRC:%.c=%.o)
-INCLUDES	=	-I ./philo.h
+CFLAGS = -Wall -Wextra -Werror
 
-RM			= 	rm -rf
+RM = rm -rf
 
-all : $(NAME)
+SRCS = 	./src/utils/ft_atoi.c \
+		./src/utils/ft_isdigit.c \
+		./src/utils/ft_usleep.c \
+		./src/utils/is_dead.c \
+		./src/utils/print.c \
+		./src/utils/timestamp.c \
+		./src/init.c \
+		./src/main.c \
+		./src/philo_state.c
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< $(INCLUDES) -o $@
+OBJ = $(SRCS:.c=.o)
 
-$(NAME): $(OBJS) ./philo.h
-	$(info Compiling philo...)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INCLUDES)
-	@echo "\033[0;32mAll done ! Have fun philosophing !\033[0m"
+$(NAME) : $(OBJ)
+	gcc -pthread  $(CFLAGS) $(OBJ) -o $(NAME)
+
+all: $(NAME)
 
 clean:
-	$(info Cleaning up...)
-	@$(RM) $(OBJS)
+	rm -rf $(OBJ)
 
-fclean:	clean
-	@$(RM) $(NAME)
+fclean: clean
+	rm -rf $(NAME)
 
-re:					fclean all
+re: fclean all
 
-.PHONY:				all bonus clean fclean re libft
+.PHONY: all clean fclean re

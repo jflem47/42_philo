@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   timestamp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 15:08:33 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/05/10 14:24:09 by jlemieux         ###   ########.fr       */
+/*   Created: 2023/05/16 15:40:43 by abrochie          #+#    #+#             */
+/*   Updated: 2023/08/03 16:07:13 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../../include/philo.h"
 
-void	philo(t_env *env)
+long long	timestamp(void)
 {
-	(void)env;
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }

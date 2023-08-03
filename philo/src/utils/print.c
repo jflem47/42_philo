@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 15:08:36 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/05/10 14:28:10 by jlemieux         ###   ########.fr       */
+/*   Created: 2023/05/16 15:41:24 by abrochie          #+#    #+#             */
+/*   Updated: 2023/08/03 16:07:09 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../../include/philo.h"
 
-int	main(int ac, char **av)
+void	print(t_philo *philo, char *str)
 {
-	t_env	env;
+	long int	time;
 
-	if (ac < 5)
-		return (printf("philo: not enough arguments.\n"), EXIT_FAILURE);
-	parse_args(av, ac, &env);
-	return (EXIT_SUCCESS);
+	pthread_mutex_lock(&(philo->info->print));
+	time = timestamp() - philo->info->t_start;
+	if (!philo->info->stop && time >= 0 && time <= INT_MAX && !is_dead(philo,
+			0))
+		printf("%lld %d %s", timestamp() - philo->info->t_start, philo->n, str);
+	pthread_mutex_unlock(&(philo->info->print));
 }
