@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:42:22 by abrochie          #+#    #+#             */
-/*   Updated: 2023/08/03 16:07:21 by jlemieux         ###   ########.fr       */
+/*   Created: 2023/08/22 14:29:43 by jlemieux          #+#    #+#             */
+/*   Updated: 2023/08/22 14:39:32 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	*check_death(void *phi)
 	if (!is_dead(philo, 0) && timestamp()
 		- philo->last_eat >= (long)(philo->info->t_die))
 	{
-		pthread_mutex_unlock(&philo->info->m_eat);
-		pthread_mutex_unlock(&philo->info->m_stop);
 		print(philo, " died\n");
 		is_dead(philo, 1);
 	}
@@ -68,7 +66,7 @@ void	*philo_life(void *phi)
 
 	philo = (t_philo *)phi;
 	if (philo->n % 2 == 0)
-		ft_usleep(philo->info->t_eat / 10);
+		ft_usleep(philo->info->t_eat / 2);
 	while (!is_dead(philo, 0))
 	{
 		pthread_create(&t, NULL, check_death, phi);
@@ -76,16 +74,7 @@ void	*philo_life(void *phi)
 		philo_eat(philo);
 		pthread_detach(t);
 		if (philo->m_count == philo->info->n_eat)
-		{
-			pthread_mutex_lock(&philo->info->m_stop);
-			if (++philo->info->philo_eat == philo->info->n_philo)
-			{
-				pthread_mutex_unlock(&philo->info->m_stop);
-				is_dead(philo, 2);
-			}
-			pthread_mutex_unlock(&philo->info->m_stop);
-			return (NULL);
-		}
+			return (is_dead(philo, 2), NULL);
 	}
 	return (NULL);
 }

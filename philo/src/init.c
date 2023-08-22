@@ -6,7 +6,7 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:06:01 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/08/03 16:06:05 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:39:03 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	philo_init(t_info *data)
 			data->philo[i].fork_r = &data->philo[0].fork_l;
 		else
 			data->philo[i].fork_r = &data->philo[i + 1].fork_l;
-		if (pthread_create(&data->philo[i].thread, NULL, &philo_life,
-				&(data->philo[i])) != 0)
+		if (pthread_create(&data->philo[i].thread, NULL, \
+				&philo_life, &(data->philo[i])) != 0)
 			return (-1);
 	}
 	i = -1;
@@ -61,29 +61,47 @@ int	check_num(char **str)
 	return (0);
 }
 
-int	var_init(t_info *data, char **av)
+int	ft_check_value(t_info *data, char **av)
 {
-	if (check_num(av))
-	{
-		printf("Invalid Arguments\n");
+	if (ft_strlen(av[1]) > 11 || ft_strlen(av[2]) > 11 || \
+		ft_strlen(av[3]) > 11 || ft_strlen(av[4]) > 11 || \
+		ft_strlen(av[5]) > 11)
 		return (1);
-	}
-	pthread_mutex_init(&data->print, NULL);
-	pthread_mutex_init(&data->m_stop, NULL);
-	pthread_mutex_init(&data->m_eat, NULL);
-	pthread_mutex_init(&data->dead, NULL);
-	data->philo_eat = 0;
 	data->n_philo = ft_atoi(av[1]);
 	data->t_die = ft_atoi(av[2]);
 	data->t_eat = ft_atoi(av[3]);
 	data->t_sleep = ft_atoi(av[4]);
 	if (av[5] == NULL)
 		data->n_eat = INT_MAX;
-	if (av[5])
+	else
 		data->n_eat = ft_atoi(av[5]);
+	if (data->n_philo > INT_MAX)
+		return (1);
+	if (data->t_die > INT_MAX)
+		return (1);
+	if (data->t_eat > INT_MAX)
+		return (1);
+	if (data->t_sleep > INT_MAX)
+		return (1);
+	if (data->n_eat > INT_MAX)
+		return (1);
+	return (0);
+}
+
+int	var_init(t_info *data, char **av)
+{
+	if (check_num(av))
+		return (printf("Invalid Arguments\n"), 1);
+	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->m_stop, NULL);
+	pthread_mutex_init(&data->m_eat, NULL);
+	pthread_mutex_init(&data->dead, NULL);
+	data->philo_eat = 0;
+	if (ft_check_value(data, av) != 0)
+		return (printf("Invalid Arguments\n"), 1);
 	if (av[5] && data->n_eat == 0)
 		return (1);
-	data->stop = 0;
+	data->stop = ft_calloc(sizeof(int), 1);
 	data->philo = malloc(sizeof(t_philo) * data->n_philo);
 	if (data->philo == NULL)
 		return (2);

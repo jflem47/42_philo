@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:42:15 by abrochie          #+#    #+#             */
-/*   Updated: 2023/08/03 16:07:17 by jlemieux         ###   ########.fr       */
+/*   Created: 2023/08/22 14:29:33 by jlemieux          #+#    #+#             */
+/*   Updated: 2023/08/22 14:39:17 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	freeall(t_info *data)
 	int	i;
 
 	i = -1;
+	free(data->stop);
 	while (++i < data->n_philo)
 	{
 		pthread_mutex_destroy(&data->philo[i].fork_l);

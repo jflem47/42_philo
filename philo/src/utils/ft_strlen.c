@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 16:06:53 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/08/22 14:37:56 by jlemieux         ###   ########.fr       */
+/*   Created: 2023/08/22 14:38:06 by jlemieux          #+#    #+#             */
+/*   Updated: 2023/08/22 14:38:14 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-int	ft_isdigit(int character)
+size_t	ft_strlen(const char *s)
 {
-	if (character >= '0' && character <= '9')
-		return (1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

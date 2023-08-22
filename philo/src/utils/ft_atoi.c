@@ -6,13 +6,13 @@
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 16:05:04 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/08/03 16:05:10 by jlemieux         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:36:51 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
 	int	i;
 	int	res;

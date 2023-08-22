@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlemieux <jlemieux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 16:06:53 by jlemieux          #+#    #+#             */
-/*   Updated: 2023/08/22 14:37:56 by jlemieux         ###   ########.fr       */
+/*   Created: 2023/08/22 14:37:16 by jlemieux          #+#    #+#             */
+/*   Updated: 2023/08/22 14:37:20 by jlemieux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-int	ft_isdigit(int character)
+void	ft_bzero(void *s, size_t n)
 {
-	if (character >= '0' && character <= '9')
-		return (1);
-	return (0);
+	size_t	i;
+	char	*dest;
+
+	i = 0;
+	dest = s;
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
 }
